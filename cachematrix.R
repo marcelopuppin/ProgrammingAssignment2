@@ -49,7 +49,7 @@ calculate_inverse_matrix <- function(matrix) {
     rows <- dim(matrix)[1]
     cols <- dim(matrix)[2]
     if (rows != cols) {
-        stop("matrix is not quadratic!")
+        stop("non square matrix!")
     }
     
     inverse <- diag(rows)
@@ -98,6 +98,9 @@ next_non_zero_row <- function(matrix, actual_row, actual_col) {
                 result <- matrix[row,]
             }
         }
+    }
+    if (is.null(result)) {
+        stop("non invertible matrix!")
     }
     result
 }
