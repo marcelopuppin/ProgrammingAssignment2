@@ -1,3 +1,12 @@
+# How to use (example):
+# --------------------------
+# source("cachematrix.R")
+# v <- matrix(c(1,2,3,4, 1,0,2,0, 0,1,2,3, 2,3,0,0),4,4)
+# x <- makeCacheMatrix(v)
+# solveCache(x)
+# --------------------------
+
+
 # Functions to get/set a matrix and corresponding inverse
 makeCacheMatrix <- function(x = matrix()) {
     im <- NULL
@@ -28,7 +37,8 @@ cacheSolve <- function(x, ...) {
         return(im)
     }
     matrix <- x$get()
-    im <- calculate_inverse_matrix(matrix, ...)
+    #im <- calculate_inverse_matrix(matrix, ...)
+    im <- solve(matrix)
     x$set_inverse_matrix(im)
     im
 }
