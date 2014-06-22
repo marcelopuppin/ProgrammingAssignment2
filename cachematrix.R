@@ -42,9 +42,14 @@ calculate_inverse_matrix <- function(matrix) {
         stop("non square matrix!")
     }
     
+    # expanding matrix A with identity matrix
+    # matrix = A|I
     identity <- diag(rows)
     matrix <- cbind(matrix, identity)
     
+    # transform the original matrix A to identity I
+    # and consequently transform appended identity matrix to inverse matrix
+    # A|I --> I|inv(A)
     for(col in 1:cols) {
         for(row in 1:rows){
             if (row == col && matrix[row,col] != 1) {
@@ -56,6 +61,9 @@ calculate_inverse_matrix <- function(matrix) {
         }
     }
     
+    # matrix = I|inv(A)
+    # removing identity matrix I from matrix
+    # returning inv(A)
     matrix[, -1:-cols]
 }
 
